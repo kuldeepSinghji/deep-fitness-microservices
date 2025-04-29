@@ -1,5 +1,6 @@
 package com.deepfitness.userdetailservice.service;
 
+import com.deepfitness.userdetailservice.custom.exceptions.ResourceNotFoundException;
 import com.deepfitness.userdetailservice.dto.UserDetailsResponse;
 import com.deepfitness.userdetailservice.dto.UserRegisterRequest;
 import com.deepfitness.userdetailservice.model.UserDetails;
@@ -14,7 +15,11 @@ public class UserDetailsService {
     UserDetailsRepository userDao;
 
     public UserDetailsResponse getUserDetails(String userId) {
-        return userDao.getUserDetailsByUserId(userId);
+        UserDetails response = userDao.findByUserId(userId);
+        if(response == null){
+            throw new ResourceNotFoundException("User Not found with Id : " + userId);
+        }
+        return getUserDetailsResponse(response);
     }
 
     public UserDetailsResponse registerUserRequest(UserRegisterRequest userRegisterRequest) {
@@ -25,6 +30,21 @@ public class UserDetailsService {
         userDetails.setLastName(userRegisterRequest.getLastName());
         userDetails.setContactNumber(userRegisterRequest.getContactNumber());
         userDetails.setPassword(userRegisterRequest.getPassword());
-        return userDao.saveUserDetails(userRegisterRequest);
+        UserDetails response =  userDao.save(userDetails);
+        return getUserDetailsResponse(response);
+    }
+
+    public UserDetailsResponse getUserDetailsResponse(UserDetails response) {
+        UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
+        userDetailsResponse.setUserRole(String.valueOf(response.getUserRole()));
+        userDetailsResponse.setUserId(response.getUserId());
+        userDetailsResponse.setEmail(response.getEmail());
+        userDetailsResponse.setCreateDate(response.getCreateDate());
+        userDetailsResponse.setGender(response.getGender());
+        userDetailsResponse.setContactNumber(response.getContactNumber());
+        userDetailsResponse.setFirstName(response.getFirstName());
+        userDetailsResponse.setLastName(response.getLastName());
+        userDetailsResponse.setLastUpdateDate(response.getLastUpdateDate());
+        return userDetailsResponse;
     }
 }

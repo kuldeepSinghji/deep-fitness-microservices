@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: user-activities
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/deepfitness-activity
+      database: deepfitness-activity
+
+server:
+  port: 8081

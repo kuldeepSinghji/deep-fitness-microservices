@@ -7,7 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserDetailsRepository extends JpaRepository<UserDetails,String> {
 
-    UserDetailsResponse getUserDetailsByUserId(String userId);
-
-    UserDetailsResponse saveUserDetails(UserRegisterRequest userRegisterRequest);
+    UserDetails findByUserId(String userId);
 }

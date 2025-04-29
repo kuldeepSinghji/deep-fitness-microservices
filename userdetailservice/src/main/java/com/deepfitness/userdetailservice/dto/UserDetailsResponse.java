@@ -10,7 +10,6 @@ public class UserDetailsResponse {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private LocalDateTime createDate;
     private LocalDateTime lastUpdateDate;
     private String userRole;
