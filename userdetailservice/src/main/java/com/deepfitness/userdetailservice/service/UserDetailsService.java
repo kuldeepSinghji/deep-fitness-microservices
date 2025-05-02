@@ -6,10 +6,12 @@ import com.deepfitness.userdetailservice.dto.UserRegisterRequest;
 import com.deepfitness.userdetailservice.model.UserDetails;
 import com.deepfitness.userdetailservice.repository.UserDetailsRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserDetailsService {
 
     UserDetailsRepository userDao;
@@ -46,5 +48,10 @@ public class UserDetailsService {
         userDetailsResponse.setLastName(response.getLastName());
         userDetailsResponse.setLastUpdateDate(response.getLastUpdateDate());
         return userDetailsResponse;
+    }
+
+    public Boolean validateUser(String userId) {
+        log.info("Validating the userId: " + userId);
+        return userDao.existsByUserId(userId);
     }
 }

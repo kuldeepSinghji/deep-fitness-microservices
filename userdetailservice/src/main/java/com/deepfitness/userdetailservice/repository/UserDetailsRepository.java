@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserDetailsRepository extends JpaRepository<UserDetails,String> {
 
     UserDetails findByUserId(String userId);
+
+    Boolean existsByUserId(String userId);
 }
