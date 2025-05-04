@@ -1,5 +1,6 @@
 package com.deepfitness.deepaiservice.model;
 
+import com.deepfitness.deepaiservice.enums.UserActivityType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,11 +23,12 @@ public class AIRecommendations {
     private String id;
     private String activityId;
     private String userId;
-    private String activityType;
+    private UserActivityType activityType;
     private String recommendations;
-    private List<String> suggestions;
-    private List<String> improvements;
-    private List<String> safety;
+    private String fullAnalysisPerformanceMetrics;
+    private List<String> nextWorkoutSuggestions;
+    private List<String> areasToImprove;
+    private List<String> safetyGuidelines;
     @CreatedDate
     private LocalDateTime createDate;
 }

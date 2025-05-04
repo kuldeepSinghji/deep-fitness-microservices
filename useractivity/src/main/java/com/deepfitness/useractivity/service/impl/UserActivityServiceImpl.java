@@ -36,6 +36,7 @@ public class UserActivityServiceImpl implements UserActivityService {
     public UserActivityResponse registerUserActivity(UserActivityRequest userActivityRequest) {
         UserActivity userActivity = UserActivity.builder()
                 .userId(userActivityRequest.getUserId())
+                .gender(userActivityRequest.getGender())
                 .userActivityType(userActivityRequest.getUserActivityType())
                 .activityDuration(userActivityRequest.getActivityDuration())
                 .caloriesBurned(userActivityRequest.getCaloriesBurned())
@@ -74,6 +75,8 @@ public class UserActivityServiceImpl implements UserActivityService {
     private UserActivityResponse getUserActivityResponse(UserActivity userActivity){
         UserActivityResponse userActivityResponse = new UserActivityResponse();
         userActivityResponse.setActivityId(userActivity.getActivityId());
+        userActivityResponse.setUserActivityType(userActivity.getUserActivityType());
+        userActivityResponse.setActivityStartTime(userActivity.getActivityStartTime());
         userActivityResponse.setUserId(userActivity.getUserId());
         userActivityResponse.setActivityDuration(userActivity.getActivityDuration());
         userActivityResponse.setCaloriesBurned(userActivity.getCaloriesBurned());

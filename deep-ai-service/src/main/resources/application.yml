@@ -17,9 +17,14 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8000/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 rabbitmq:
   exchange: deepFitness.exchange
   queue: userActivity.queue
   routing: userActivity.tracking
+
+gemini:
+  api:
+    url: ${GEMINI_API_URL}
+    key: ${GEMINI_API_KEY}
