@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/activity")
 @AllArgsConstructor
 public class UserActivityController {
 
@@ -27,7 +27,7 @@ public class UserActivityController {
         return ResponseEntity.ok(userActivityService.getUserActivities(userId));
     }
 
-    @GetMapping("activity/{userActivityId}")
+    @GetMapping("{userActivityId}")
     public ResponseEntity<UserActivityResponse> getUserActivity(@NonNull @PathVariable String userActivityId){
         return ResponseEntity.ok(userActivityService.getUserActivity(userActivityId));
     }

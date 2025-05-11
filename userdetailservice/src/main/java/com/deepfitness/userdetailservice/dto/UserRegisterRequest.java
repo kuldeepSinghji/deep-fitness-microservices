@@ -9,7 +9,7 @@ import lombok.Data;
 public class UserRegisterRequest {
     private String firstName;
     private String lastName;
-
+    private String keyCloakId;
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     private String email;

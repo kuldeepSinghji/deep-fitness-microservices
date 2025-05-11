@@ -10,4 +10,10 @@ public interface UserDetailsRepository extends JpaRepository<UserDetails,String>
     UserDetails findByUserId(String userId);
 
     Boolean existsByUserId(String userId);
+
+    boolean existsByEmail(String email);
+
+    UserDetails findByEmail(String email);
+
+    Boolean existsByKeyCloakId(String keycloakId);
 }

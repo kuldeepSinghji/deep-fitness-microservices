@@ -1,17 +1,5 @@
 spring:
   application:
     name: user-detail-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/deep_fitness_user_db
-    username: root
-    password: your_desired_password
-
-jpa:
-  hibernate:
-    ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+  config:
+    import: optional:configserver:http://localhost:8000

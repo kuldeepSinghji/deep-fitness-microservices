@@ -35,4 +35,5 @@ public class UserDetails {
     private final UserRole userRole = UserRole.USER;
     private String gender;
     private Integer contactNumber;
+    private String keyCloakId;
 }
