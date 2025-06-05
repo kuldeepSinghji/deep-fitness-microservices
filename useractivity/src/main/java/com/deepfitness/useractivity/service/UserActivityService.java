@@ -9,4 +9,5 @@ public interface UserActivityService {
     UserActivityResponse registerUserActivity(UserActivityRequest userActivityRequest);
     List<UserActivityResponse> getUserActivities(String userId);
     UserActivityResponse getUserActivity(String userActivityId);
+    String removeUserActivity(String userActivityId);
 }

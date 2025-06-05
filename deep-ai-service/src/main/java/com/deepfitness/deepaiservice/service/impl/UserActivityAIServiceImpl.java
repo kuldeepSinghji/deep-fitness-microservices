@@ -52,13 +52,13 @@ public class UserActivityAIServiceImpl implements UserActivityAIService {
             JsonNode analysisNode = analysisJson.path("sessionAnalysis");
             StringBuilder fullAnalysis = new StringBuilder();
             StringBuilder fullAnalysisPerformanceMetrics = new StringBuilder();
-            addAnalysisSection(fullAnalysis, analysisNode, "summary", "Summary:");
-            addAnalysisSection(fullAnalysis, analysisNode, "efficiencyScore", "EfficiencyScore:");
+            addAnalysisSection(fullAnalysis, analysisNode, "summary", "Summary: ");
+            addAnalysisSection(fullAnalysis, analysisNode, "efficiencyScore", "EfficiencyScore: ");
             JsonNode performanceMetrics = analysisNode.path("performanceMetrics");
-            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "efficiencyScore", "EfficiencyScore:");
-            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "paceInsights", "Insights:");
-            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "calorieInsights", "CalorieInsights:");
-            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "intensityLevel", "IntensityLevel:");
+            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "efficiencyScore", "EfficiencyScore: ");
+            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "paceInsights", "Insights: ");
+            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "calorieInsights", "CalorieInsights: ");
+            addAnalysisSection(fullAnalysisPerformanceMetrics, performanceMetrics, "intensityLevel", "IntensityLevel: ");
 
             List<String> areaToImprove = extractAreasToImprove(analysisJson.path("areasToImprove"));
             List<String> nextWorkoutSuggestions = extractNextWorkoutSuggestions(analysisJson.path("nextWorkoutSuggestions"));

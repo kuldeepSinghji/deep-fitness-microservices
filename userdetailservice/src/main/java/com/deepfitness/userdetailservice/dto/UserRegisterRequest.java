@@ -9,6 +9,8 @@ import lombok.Data;
 public class UserRegisterRequest {
     private String firstName;
     private String lastName;
+
+    @NotBlank(message = "KeyCloakId is required")
     private String keyCloakId;
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")

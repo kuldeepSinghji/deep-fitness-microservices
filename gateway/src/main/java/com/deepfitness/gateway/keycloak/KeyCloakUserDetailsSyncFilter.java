@@ -35,7 +35,7 @@ public class KeyCloakUserDetailsSyncFilter implements WebFilter {
             return userDetailsService.validateUserDetails(userId)
                     .flatMap(exist->{
                         if(!exist){
-                            log.info("User already exists with userId: " + finalUserId);
+                            log.info("User does not exists with userId: " + finalUserId);
                             if(userRegisterRequest != null){
                                return userDetailsService.registerUserDetails(userRegisterRequest)
                                        .then(Mono.empty());
@@ -68,7 +68,7 @@ public class KeyCloakUserDetailsSyncFilter implements WebFilter {
             userRegisterRequest.setPassword("111111");
             userRegisterRequest.setFirstName(claimsSet.getStringClaim("given_name"));
             userRegisterRequest.setLastName(claimsSet.getStringClaim("family_name"));
-            userRegisterRequest.setContactNumber(234234322);
+            log.info("checking cloak Id: " + userRegisterRequest.getKeyCloakId());
             return userRegisterRequest;
         } catch (ParseException e) {
             e.printStackTrace();

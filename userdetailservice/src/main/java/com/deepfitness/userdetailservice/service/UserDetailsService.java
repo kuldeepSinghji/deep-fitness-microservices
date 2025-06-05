@@ -35,6 +35,7 @@ public class UserDetailsService {
     }
 
     private UserDetails getUserDetails(UserRegisterRequest userRegisterRequest) {
+        log.info("keyCloak Id: userdetails " + userRegisterRequest.getKeyCloakId());
         UserDetails userDetails = new UserDetails();
         userDetails.setKeyCloakId(userRegisterRequest.getKeyCloakId());
         userDetails.setEmail(userRegisterRequest.getEmail());

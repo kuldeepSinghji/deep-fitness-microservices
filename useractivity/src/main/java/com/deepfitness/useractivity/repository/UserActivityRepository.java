@@ -11,4 +11,6 @@ import java.util.Optional;
 @Repository
 public interface UserActivityRepository extends MongoRepository<UserActivity,String> {
     List<UserActivity> findByUserId(String userId);
+
+    String deleteUserActivityByActivityId(String userActivityId);
 }

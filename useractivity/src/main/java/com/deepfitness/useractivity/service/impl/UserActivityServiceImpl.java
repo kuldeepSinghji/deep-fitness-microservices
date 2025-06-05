@@ -72,6 +72,19 @@ public class UserActivityServiceImpl implements UserActivityService {
         return getUserActivityResponse(userActivity.orElse(null));
     }
 
+    @Override
+    public String removeUserActivity(String userActivityId) {
+        try{
+          userActivityRepository.deleteUserActivityByActivityId(userActivityId);
+        }catch (ResourceNotFoundException ex){
+          throw  new ResourceNotFoundException("User Activity not present with activity Id: " + userActivityId);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return "";
+        }
+        return userActivityId;
+    }
+
     private UserActivityResponse getUserActivityResponse(UserActivity userActivity){
         UserActivityResponse userActivityResponse = new UserActivityResponse();
         userActivityResponse.setActivityId(userActivity.getActivityId());
