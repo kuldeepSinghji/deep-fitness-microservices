@@ -1,0 +1,13 @@
+export const ACTIVITY_TYPES = [
+  "RUNNING",
+  "YOGA",
+  "WALKING",
+  "CYCLING",
+  "CARDIO",
+  "WEIGHT_TRAINING",
+  "HIIT",
+  "STRETCHING",
+  "SWIMMING",
+  "BOXING",
+  "OTHER"
+];
