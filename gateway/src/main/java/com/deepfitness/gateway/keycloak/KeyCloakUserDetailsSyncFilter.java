@@ -26,7 +26,7 @@ public class KeyCloakUserDetailsSyncFilter implements WebFilter {
         String userId = exchange.getRequest().getHeaders().getFirst("X-User-Id");
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         UserRegisterRequest userRegisterRequest = getUserDetails(token);
-        if (userId == null) {
+        if (userId == null && userRegisterRequest != null) {
             userId = userRegisterRequest.getKeyCloakId();
         }
         log.info("Filter is calling **********");
@@ -45,11 +45,11 @@ public class KeyCloakUserDetailsSyncFilter implements WebFilter {
                         }else{
                             return Mono.empty();
                         }
-                    }).then(Mono.defer( ()->{
+                    }).then(Mono.defer(() -> {
                 ServerHttpRequest mutateRequest = exchange.getRequest()
-                        .mutate().header("X-User-Id",finalUserId)
+                        .mutate().header("X-User-Id", finalUserId)
                         .build();
-                return chain.filter(exchange.mutate().request(mutateRequest).build());
+                return Mono.from(chain.filter(exchange.mutate().request(mutateRequest).build()));
             }));
         }
 
@@ -58,6 +58,9 @@ public class KeyCloakUserDetailsSyncFilter implements WebFilter {
 
     private UserRegisterRequest getUserDetails(String token) {
         try {
+            if (token == null || !token.startsWith("Bearer ")) {
+                return null;
+            }
             String filterToken = token.replace("Bearer","").trim();
             SignedJWT signedJWT = SignedJWT.parse(filterToken);
             JWTClaimsSet claimsSet = signedJWT.getJWTClaimsSet();
