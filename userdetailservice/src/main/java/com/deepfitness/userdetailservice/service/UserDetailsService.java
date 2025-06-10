@@ -48,6 +48,9 @@ public class UserDetailsService {
     }
 
     public UserDetailsResponse getUserDetailsResponse(UserDetails response) {
+        if(response == null) {
+            throw new ResourceNotFoundException("User Not found with Id ");
+        }
         UserDetailsResponse userDetailsResponse = new UserDetailsResponse();
         userDetailsResponse.setKeyCloakId(userDetailsResponse.getKeyCloakId());
         userDetailsResponse.setUserRole(String.valueOf(response.getUserRole()));
